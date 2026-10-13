@@ -41,7 +41,9 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-go@v7
         with:
-          go-version: stable
+          # staticcheck 2026.2.1 cannot read Go 1.27 export data
+          # (dominikh/go-tools#1832); return to stable once a release supports it.
+          go-version: "1.26.x"
       - name: gofmt
         run: test -z "$(gofmt -l .)" || { gofmt -l .; exit 1; }
       - run: go run honnef.co/go/tools/cmd/staticcheck@v0.8.1 ./...
