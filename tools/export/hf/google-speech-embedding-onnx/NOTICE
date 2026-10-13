@@ -1,0 +1,28 @@
+Google speech_embedding/1 (TensorFlow1 / speech-embedding / version 1)
+Original work published by Google under the Apache License, Version 2.0.
+Source: https://www.kaggle.com/models/google/speech-embedding/TensorFlow1/speech-embedding/1
+Original archive SHA-256:
+0f626c42009c1eb916401b7b2800229a211e43100115bc591b9afbf1b60da27f
+
+Paper: James Lin, Kevin Kilgour, Dominik Roblek, Matthew Sharifi,
+"Training Keyword Spotters with Limited and Synthesized Speech Data",
+arXiv:2002.01322. https://arxiv.org/abs/2002.01322
+
+This repository contains an ONNX conversion made by Drew Bednar for
+go-phonmatchnet, from the PyTorch conversion
+androiddrew/google-speech-embedding-pytorch (revision v1, commit
+ad7a3dd93b02f83797a040857425d6343d98680a). It is not affiliated with or
+endorsed by Google.
+
+Modifications to the original work:
+- the TensorFlow graph was re-implemented with PyTorch operations, then
+  exported to ONNX;
+- HWIO convolution kernels were transposed to OIHW;
+- the original inference-time spatial-mean subtraction was applied to the
+  first convolution kernel ahead of time;
+- the FFT was expressed as a convolution with a fixed DFT basis, with the
+  original window applied to it.
+All trained parameters, normalization statistics and frontend constants are
+otherwise unchanged. No training or fine-tuning was performed.
+
+The original archive contained no NOTICE file.

@@ -1,0 +1,57 @@
+{
+  "format": "naptrap-phonmatchnet-onnx-v1",
+  "source": {
+    "repo_id": "androiddrew/naptrap-phonmatchnet-en",
+    "commit": "e8f6c45bff04d7368cbe14979392b7d52dc88ba8",
+    "format": "naptrap-phonmatchnet-v1",
+    "sha256": "6cdb3f86b6ab57a00d47d3436b16c7ffd9c4b0d049cfcb98d49a478877213226"
+  },
+  "opset": 17,
+  "architecture": "PhonMatchNet",
+  "task": "C-KWS",
+  "language": "en",
+  "thresholds": {
+    "0.01": 0.7149204015731812,
+    "0.1": 0.002564735012128949
+  },
+  "threshold_note": "Score thresholds fitted on held-out development speakers for a target per-clip false-accept rate; the achieved rate on other audio differs.",
+  "inputs": {
+    "waveform": "[N] mono 16 kHz float32 in [-1, 1], 8000 <= N <= 32000",
+    "google": "[floor(N / 1280), 96] output of google/model.onnx for the same waveform",
+    "text": "[P, 256] g2p decoder features, 1 <= P <= 128"
+  },
+  "outputs": {
+    "logit": "[1] keyword logit; score = sigmoid(logit)"
+  },
+  "frontend": {
+    "sample_rate": 16000,
+    "n_fft": 512,
+    "win_length": 400,
+    "hop_length": 160,
+    "window": "periodic Hann",
+    "center": true,
+    "pad_mode": "reflect",
+    "log": "log10(mel_power+1e-7)",
+    "length_rule": "ceil(samples/160)"
+  },
+  "requires": {
+    "google": {
+      "repo_id": "androiddrew/google-speech-embedding-onnx",
+      "revision": "v1",
+      "sha256": {
+        "model.onnx": "bfef7f0ace055206df8aeab960bb0fbe6e44898a8549ef79ae6a1ed6591169d3"
+      }
+    },
+    "g2p": {
+      "repo_id": "androiddrew/g2p-en-decoder-onnx",
+      "revision": "v1",
+      "sha256": {
+        "encoder.onnx": "c492a8907a8b62d7f1e311c0df469490a4e4670865a6a5d8b4b7749a38666091",
+        "decoder.onnx": "86953a2604f3494bf44c4d81df67c444455b4a9f0cf6f08d62fab08393bd29e1"
+      }
+    }
+  },
+  "sha256": {
+    "model.onnx": "7731c54f3cd8121a51eb4fb63dfa8009f281aeff6203c81d6070197b0376546f"
+  }
+}

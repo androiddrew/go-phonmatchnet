@@ -1,0 +1,27 @@
+{
+  "format": "naptrap-google-speech-embedding-onnx-v1",
+  "source": {
+    "repo_id": "androiddrew/google-speech-embedding-pytorch",
+    "commit": "ad7a3dd93b02f83797a040857425d6343d98680a",
+    "format": "naptrap-google-speech-embedding-v1",
+    "sha256": "80a10015f4eb8ff9ba1aa10b56b1d6e27ef9f9f3419ebbae56fb43e9afce37be"
+  },
+  "opset": 17,
+  "embedding_size": 96,
+  "inputs": {
+    "waveform": "[N] mono 16 kHz float32, N >= 1280"
+  },
+  "outputs": {
+    "embeddings": "[floor(N / 1280), 96]"
+  },
+  "preprocessing": {
+    "sample_rate": 16000,
+    "leading_zeros": 11120,
+    "frames": "floor(samples / 1280)",
+    "stft": "400-sample Hann window, hop 160, 512-point FFT, no centering, magnitude",
+    "mel": "32 bins, natural log(mel + 0.001)"
+  },
+  "sha256": {
+    "model.onnx": "bfef7f0ace055206df8aeab960bb0fbe6e44898a8549ef79ae6a1ed6591169d3"
+  }
+}

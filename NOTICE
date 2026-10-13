@@ -1,0 +1,22 @@
+go-phonmatchnet
+Copyright 2026 Drew Bednar and contributors
+
+Original project code is licensed under Apache-2.0 (LICENSE).
+Keyword normalization and the g2p decoder-state loop follow naptrap 0.1.0
+(Apache-2.0), https://github.com/androiddrew/naptrap.
+
+Embedded models (models/), converted to ONNX by tools/export from naptrap's
+v1 Hugging Face releases:
+- models/phonmatchnet/: naptrap-phonmatchnet-en, Copyright 2026 Drew Bednar,
+  Apache-2.0. Trained independently with NCSOFT's BSD-3-Clause PhonMatchNet
+  training code (https://github.com/ncsoft/PhonMatchNet); NCSOFT's notice is
+  in third_party/licenses/PhonMatchNet-BSD-3-Clause.txt. Training data:
+  LibriSpeech (CC BY 4.0). Not affiliated with or endorsed by NCSOFT or the
+  PhonMatchNet authors.
+- models/google/: Google speech_embedding/1 (Apache-2.0), converted by Drew
+  Bednar. Not affiliated with or endorsed by Google.
+- models/g2p/: g2p_en 2.1.0 decoder by Kyubyong Park and Jongseok Kim
+  (Apache-2.0), split into encoder and decoder-step graphs. Not affiliated
+  with or endorsed by the g2p_en authors.
+Each conversion re-expresses the computation for ONNX Runtime; trained values
+are unchanged. Third-party terms are listed in THIRD_PARTY.md.

@@ -1,0 +1,26 @@
+naptrap-phonmatchnet-en-onnx
+Copyright 2026 Drew Bednar. Licensed under the Apache License, Version 2.0.
+
+An ONNX conversion of androiddrew/naptrap-phonmatchnet-en (revision v1, commit
+e8f6c45bff04d7368cbe14979392b7d52dc88ba8), made by Drew Bednar for
+go-phonmatchnet. The trained values are unchanged; the computation, including
+the log-mel frontend, was re-expressed as ONNX operators.
+
+The weights were trained independently by Drew Bednar using the
+BSD-3-Clause-licensed PhonMatchNet PyTorch training code published by NCSOFT
+(https://github.com/ncsoft/PhonMatchNet, "pytorch" branch), with
+modifications. NCSOFT's copyright notice and license are reproduced in
+licenses/PhonMatchNet-BSD-3-Clause.txt.
+
+Not affiliated with or endorsed by NCSOFT Corporation or the PhonMatchNet
+authors (Yong-Hyeok Lee, Namhyun Cho).
+
+Training data: LibriSpeech ASR corpus (train-clean-100, train-clean-360),
+V. Panayotov, G. Chen, D. Povey, S. Khudanpur, licensed CC BY 4.0,
+https://www.openslr.org/12
+
+Companion models used as frozen inputs, distributed separately:
+- Google speech_embedding/1 (Apache-2.0):
+  https://huggingface.co/androiddrew/google-speech-embedding-onnx
+- g2p_en 2.1.0 decoder by Kyubyong Park and Jongseok Kim (Apache-2.0):
+  https://huggingface.co/androiddrew/g2p-en-decoder-onnx

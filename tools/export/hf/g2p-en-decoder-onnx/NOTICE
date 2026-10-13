@@ -1,0 +1,15 @@
+g2p_en 2.1.0: English grapheme-to-phoneme conversion
+Original work by Kyubyong Park and Jongseok Kim, licensed under the Apache
+License, Version 2.0. https://github.com/Kyubyong/g2p
+Source file: g2p_en/checkpoint20.npz (SHA-256
+b8af35e4596d8dd5836dfd3fe9b2ba4f97b9c311efe8879544cbcfcbd566d8c6)
+
+This repository contains an ONNX conversion made by Drew Bednar for
+go-phonmatchnet, from the repackaging androiddrew/g2p-en-decoder-pytorch
+(revision v1, commit fc55559c25a12fce6e0cf9062729e7f2a9fc1ddc). It is not
+affiliated with or endorsed by the g2p_en authors.
+
+Modifications to the original work: the NumPy arrays were renamed and stored
+in safetensors format, then the network was split into a word-encoder graph
+and a single-step decoder graph and exported to ONNX. Values are unchanged.
+No training or fine-tuning was performed.
